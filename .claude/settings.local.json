@@ -39,7 +39,11 @@
       "Bash(brew install:*)",
       "Bash(render blueprints launch:*)",
       "Bash(gh auth:*)",
-      "Bash(git init:*)"
+      "Bash(git init:*)",
+      "Bash(gh repo create:*)",
+      "Bash(git rm:*)",
+      "Bash(gh repo edit:*)",
+      "mcp__fetch__imageFetch"
     ]
   }
 }

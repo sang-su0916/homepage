@@ -27,18 +27,18 @@
           <!-- Logo -->
           <div class="flex-shrink-0">
             <%= link_to root_path, class: "flex items-center" do %>
-              <span class="text-xl font-bold text-blue-600">L-BIZ</span>
-              <span class="text-xl font-light text-gray-700 ml-1">Partners</span>
+              <span class="text-xl font-bold text-blue-600">엘비즈</span>
+              <span class="text-xl font-light text-gray-700 ml-1">파트너스</span>
             <% end %>
           </div>
 
           <!-- Desktop Navigation -->
           <div class="hidden md:flex items-center space-x-8">
-            <%= link_to t("nav.about"), root_path(anchor: "about"), class: "text-gray-600 hover:text-blue-600 transition-colors" %>
-            <%= link_to t("nav.services"), root_path(anchor: "services"), class: "text-gray-600 hover:text-blue-600 transition-colors" %>
-            <%= link_to t("nav.contents"), contents_path, class: "text-gray-600 hover:text-blue-600 transition-colors" %>
-            <%= link_to t("nav.blog"), blog_index_path, class: "text-gray-600 hover:text-blue-600 transition-colors" %>
-            <%= link_to t("nav.contact"), new_contact_path, class: "bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors" %>
+            <%= link_to "회사 소개", root_path(anchor: "about"), class: "text-gray-600 hover:text-blue-600 transition-colors" %>
+            <%= link_to "서비스", root_path(anchor: "services"), class: "text-gray-600 hover:text-blue-600 transition-colors" %>
+            <%= link_to "뉴스레터", root_path(anchor: "newsletter"), class: "text-gray-600 hover:text-blue-600 transition-colors" %>
+            <%= link_to "블로그", blog_index_path, class: "text-gray-600 hover:text-blue-600 transition-colors" %>
+            <%= link_to "상담 예약", new_contact_path, class: "bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors" %>
 
             <!-- Language Switcher -->
             <div class="relative" data-controller="dropdown">
@@ -90,11 +90,11 @@
         <!-- Mobile Navigation -->
         <div class="md:hidden hidden" id="mobile-menu">
           <div class="px-2 pt-2 pb-3 space-y-1">
-            <%= link_to t("nav.about"), root_path(anchor: "about"), class: "block px-3 py-2 text-gray-600 hover:text-blue-600" %>
-            <%= link_to t("nav.services"), root_path(anchor: "services"), class: "block px-3 py-2 text-gray-600 hover:text-blue-600" %>
-            <%= link_to t("nav.contents"), contents_path, class: "block px-3 py-2 text-gray-600 hover:text-blue-600" %>
-            <%= link_to t("nav.blog"), blog_index_path, class: "block px-3 py-2 text-gray-600 hover:text-blue-600" %>
-            <%= link_to t("nav.contact"), new_contact_path, class: "block px-3 py-2 text-white bg-blue-600 rounded-lg text-center mt-2" %>
+            <%= link_to "회사 소개", root_path(anchor: "about"), class: "block px-3 py-2 text-gray-600 hover:text-blue-600" %>
+            <%= link_to "서비스", root_path(anchor: "services"), class: "block px-3 py-2 text-gray-600 hover:text-blue-600" %>
+            <%= link_to "뉴스레터", root_path(anchor: "newsletter"), class: "block px-3 py-2 text-gray-600 hover:text-blue-600" %>
+            <%= link_to "블로그", blog_index_path, class: "block px-3 py-2 text-gray-600 hover:text-blue-600" %>
+            <%= link_to "상담 예약", new_contact_path, class: "block px-3 py-2 text-white bg-blue-600 rounded-lg text-center mt-2" %>
           </div>
         </div>
       </nav>
@@ -124,21 +124,22 @@
           <!-- Company Info -->
           <div>
             <div class="flex items-center mb-4">
-              <span class="text-xl font-bold text-blue-400">L-BIZ</span>
-              <span class="text-xl font-light text-gray-300 ml-1">Partners</span>
+              <span class="text-xl font-bold text-blue-400">엘비즈</span>
+              <span class="text-xl font-light text-gray-300 ml-1">파트너스</span>
             </div>
-            <p class="text-gray-400 text-sm"><%= t("site.tagline") %></p>
+            <p class="text-gray-400 text-sm">중소기업과 소상공인의 성공적인 성장을 함께합니다</p>
           </div>
 
           <!-- Quick Links -->
           <div>
-            <h3 class="font-semibold mb-4"><%= t("footer.quick_links") %></h3>
+            <h3 class="font-semibold mb-4">바로가기</h3>
             <ul class="space-y-2 text-sm text-gray-400">
-              <li><%= link_to t("nav.about"), root_path(anchor: "about"), class: "hover:text-white transition-colors" %></li>
-              <li><%= link_to t("nav.services"), root_path(anchor: "services"), class: "hover:text-white transition-colors" %></li>
-              <li><%= link_to t("nav.contents"), contents_path, class: "hover:text-white transition-colors" %></li>
-              <li><%= link_to t("nav.blog"), blog_index_path, class: "hover:text-white transition-colors" %></li>
-              <li><%= link_to t("nav.contact"), new_contact_path, class: "hover:text-white transition-colors" %></li>
+              <li><%= link_to "회사 소개", root_path(anchor: "about"), class: "hover:text-white transition-colors" %></li>
+              <li><%= link_to "서비스 안내", root_path(anchor: "services"), class: "hover:text-white transition-colors" %></li>
+              <li><%= link_to "AI 교육 프로그램", root_path(anchor: "services"), class: "hover:text-white transition-colors" %></li>
+              <li><%= link_to "뉴스레터", root_path(anchor: "newsletter"), class: "hover:text-white transition-colors" %></li>
+              <li><%= link_to "블로그", blog_index_path, class: "hover:text-white transition-colors" %></li>
+              <li><%= link_to "상담 예약", new_contact_path, class: "hover:text-white transition-colors" %></li>
             </ul>
           </div>
 
