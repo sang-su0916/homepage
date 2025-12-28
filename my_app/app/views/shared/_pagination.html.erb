@@ -1,0 +1,54 @@
+<% if @pagy && @pagy.pages > 1 %>
+  <nav class="flex items-center justify-center mt-8" aria-label="Pagination">
+    <div class="flex items-center space-x-1">
+      <%# Previous button %>
+      <% if @pagy.prev %>
+        <%= link_to pagy_url_for(@pagy, @pagy.prev), class: "px-3 py-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors" do %>
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+        <% end %>
+      <% else %>
+        <span class="px-3 py-2 rounded-lg text-gray-300 cursor-not-allowed">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+        </span>
+      <% end %>
+
+      <%# Page numbers %>
+      <% @pagy.series.each do |item| %>
+        <% if item.is_a?(Integer) %>
+          <% if item == @pagy.page %>
+            <span class="px-4 py-2 rounded-lg bg-blue-600 text-white font-medium">
+              <%= item %>
+            </span>
+          <% else %>
+            <%= link_to item, pagy_url_for(@pagy, item), class: "px-4 py-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors" %>
+          <% end %>
+        <% elsif item == :gap %>
+          <span class="px-2 py-2 text-gray-400">...</span>
+        <% end %>
+      <% end %>
+
+      <%# Next button %>
+      <% if @pagy.next %>
+        <%= link_to pagy_url_for(@pagy, @pagy.next), class: "px-3 py-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors" do %>
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        <% end %>
+      <% else %>
+        <span class="px-3 py-2 rounded-lg text-gray-300 cursor-not-allowed">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </span>
+      <% end %>
+    </div>
+  </nav>
+
+  <p class="text-center text-sm text-gray-500 mt-4">
+    총 <%= @pagy.count %>개 중 <%= @pagy.from %>-<%= @pagy.to %>
+  </p>
+<% end %>

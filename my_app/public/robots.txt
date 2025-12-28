@@ -1,0 +1,40 @@
+# https://www.robotstxt.org/robotstxt.html
+
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# Block admin section from crawling
+Disallow: /admin/
+Disallow: /rails/
+
+# Sitemap location
+Sitemap: https://lbizpartners.com/sitemap.xml.gz
+
+# Crawl delay for respectful crawling
+Crawl-delay: 1
+
+# Google specific
+User-agent: Googlebot
+Allow: /
+Disallow: /admin/
+
+# Bing specific
+User-agent: Bingbot
+Allow: /
+Disallow: /admin/
+
+# Naver specific
+User-agent: Yeti
+Allow: /
+Disallow: /admin/
+
+# Block bad bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /

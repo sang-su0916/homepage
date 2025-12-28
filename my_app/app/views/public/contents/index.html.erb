@@ -1,0 +1,79 @@
+<%
+  set_page_meta(
+    title: "정보콘텐츠",
+    description: "비즈니스 성장에 도움이 되는 유용한 정보와 인사이트. 트렌드 분석, 마케팅 전략, 비즈니스 노하우를 확인하세요.",
+    keywords: "정보콘텐츠, 비즈니스 트렌드, 마케팅 인사이트, 비즈니스 정보, HR 트렌드, 데이터 분석"
+  )
+%>
+
+<% content_for :json_ld do %>
+  <%= json_ld_tag(breadcrumb_json_ld([
+    { name: "홈", url: root_path },
+    { name: "정보콘텐츠", url: nil }
+  ])) %>
+<% end %>
+
+<!-- Hero Section -->
+<section class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-16">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <h1 class="text-4xl md:text-5xl font-bold mb-4">정보콘텐츠</h1>
+    <p class="text-xl text-blue-100 max-w-2xl mx-auto">
+      비즈니스 성장에 도움이 되는 유용한 정보와 인사이트를 제공합니다
+    </p>
+  </div>
+</section>
+
+<!-- Category Filter -->
+<section class="bg-white border-b">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex flex-wrap gap-2 justify-center">
+      <span class="px-4 py-2 bg-blue-600 text-white rounded-full text-sm font-medium cursor-pointer">전체</span>
+      <span class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm font-medium cursor-pointer hover:bg-gray-200 transition-colors">트렌드</span>
+      <span class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm font-medium cursor-pointer hover:bg-gray-200 transition-colors">마케팅</span>
+      <span class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm font-medium cursor-pointer hover:bg-gray-200 transition-colors">비즈니스</span>
+      <span class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm font-medium cursor-pointer hover:bg-gray-200 transition-colors">HR</span>
+      <span class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm font-medium cursor-pointer hover:bg-gray-200 transition-colors">데이터</span>
+    </div>
+  </div>
+</section>
+
+<!-- Contents Grid -->
+<section class="py-16 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <% @contents.each do |content| %>
+        <%= link_to content_path(content[:id]), class: "group" do %>
+          <article class="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-lg transition-shadow duration-300">
+            <div class="aspect-video overflow-hidden">
+              <img src="<%= content[:image] %>" alt="<%= content[:title] %>"
+                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-medium">
+                  <%= content[:category] %>
+                </span>
+                <span class="text-gray-400 text-sm"><%= content[:date] %></span>
+              </div>
+              <h3 class="text-lg font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
+                <%= content[:title] %>
+              </h3>
+              <p class="text-gray-600 text-sm line-clamp-2">
+                <%= content[:description] %>
+              </p>
+            </div>
+          </article>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="bg-white py-16">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <h2 class="text-2xl font-bold text-gray-900 mb-4">더 많은 인사이트가 필요하신가요?</h2>
+    <p class="text-gray-600 mb-8">L-BIZ Partners의 전문 컨설턴트가 귀사에 맞는 솔루션을 제안해 드립니다.</p>
+    <%= link_to "문의하기", new_contact_path, class: "inline-block bg-blue-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors" %>
+  </div>
+</section>

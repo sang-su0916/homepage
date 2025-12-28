@@ -1,0 +1,21 @@
+<% content_for :page_title, "포트폴리오 수정" %>
+
+<!-- Breadcrumb -->
+<div class="mb-6">
+  <nav class="text-sm text-gray-500">
+    <%= link_to "포트폴리오", admin_portfolios_path, class: "hover:text-blue-600" %>
+    <span class="mx-2">/</span>
+    <%= link_to @portfolio.title, admin_portfolio_path(@portfolio.id), class: "hover:text-blue-600" %>
+    <span class="mx-2">/</span>
+    <span class="text-gray-900">수정</span>
+  </nav>
+</div>
+
+<!-- Header -->
+<div class="mb-6">
+  <h2 class="text-2xl font-bold text-gray-900">포트폴리오 수정</h2>
+  <p class="text-gray-600 mt-1"><%= @portfolio.title %></p>
+</div>
+
+<!-- Form -->
+<%= render "form" %>

@@ -1,0 +1,62 @@
+<%
+  set_page_meta(
+    title: @portfolio.title,
+    description: truncate(strip_tags(@portfolio.description), length: 160),
+    keywords: "#{@portfolio.title}, #{@portfolio.client}, 포트폴리오, 프로젝트 사례",
+    image: @portfolio.image_url
+  )
+%>
+
+<% content_for :json_ld do %>
+  <%= json_ld_tag(breadcrumb_json_ld([
+    { name: "홈", url: root_path },
+    { name: "포트폴리오", url: portfolios_path },
+    { name: @portfolio.title, url: nil }
+  ])) %>
+  <%= json_ld_tag(portfolio_json_ld(@portfolio)) %>
+<% end %>
+
+<!-- Page Header -->
+<section class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-16">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav class="mb-4">
+      <%= link_to "← 포트폴리오 목록", portfolios_path, class: "text-blue-200 hover:text-white transition-colors" %>
+    </nav>
+    <h1 class="text-3xl md:text-4xl font-bold"><%= @portfolio.title %></h1>
+  </div>
+</section>
+
+<!-- Portfolio Detail -->
+<article class="py-12 bg-white">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Image -->
+    <% if @portfolio.large_url.present? || @portfolio.image_url.present? %>
+      <div class="rounded-xl overflow-hidden shadow-lg mb-8">
+        <img src="<%= @portfolio.large_url || @portfolio.image_url %>" alt="<%= @portfolio.title %>" class="w-full h-auto">
+      </div>
+    <% else %>
+      <div class="h-64 md:h-80 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center mb-8">
+        <span class="text-white text-8xl font-bold opacity-30"><%= @portfolio.title[0] %></span>
+      </div>
+    <% end %>
+
+    <!-- Meta Info -->
+    <div class="flex flex-wrap gap-4 mb-8 pb-8 border-b border-gray-200">
+      <div class="bg-gray-100 rounded-lg px-4 py-2">
+        <span class="text-sm text-gray-500">고객사</span>
+        <p class="font-semibold text-gray-900"><%= @portfolio.client %></p>
+      </div>
+    </div>
+
+    <!-- Description -->
+    <div class="prose prose-lg max-w-none text-gray-700">
+      <%= simple_format(@portfolio.description) %>
+    </div>
+
+    <!-- Actions -->
+    <div class="mt-12 pt-8 border-t border-gray-200 flex flex-wrap gap-4">
+      <%= link_to "← 목록으로", portfolios_path, class: "text-gray-600 hover:text-blue-600 transition-colors" %>
+      <%= link_to "문의하기", new_contact_path, class: "ml-auto bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors" %>
+    </div>
+  </div>
+</article>

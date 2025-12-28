@@ -1,0 +1,163 @@
+ko:
+  # ActiveModel validations
+  activemodel:
+    errors:
+      messages:
+        blank: "을(를) 입력해 주세요"
+        invalid: "이(가) 유효하지 않습니다"
+        not_a_number: "은(는) 숫자가 아닙니다"
+        greater_than_or_equal_to: "은(는) %{count}보다 크거나 같아야 합니다"
+  errors:
+    format: "%{attribute} %{message}"
+
+  # Language names
+  languages:
+    ko: "한국어"
+    en: "English"
+
+  # Site-wide
+  site:
+    name: "L-BIZ Partners"
+    tagline: "비즈니스 성공을 위한 최적의 파트너"
+
+  # Navigation
+  nav:
+    about: "회사 소개"
+    services: "서비스"
+    contents: "정보콘텐츠"
+    blog: "블로그"
+    contact: "문의하기"
+    portfolio: "포트폴리오"
+
+  # Footer
+  footer:
+    quick_links: "바로가기"
+    contact_info: "연락처"
+    email: "이메일"
+    phone: "전화"
+    address: "주소"
+    address_value: "서울특별시 강남구"
+    copyright: "&copy; %{year} L-BIZ Partners. All rights reserved."
+
+  # Home page
+  home:
+    hero:
+      title: "비즈니스의 성공적인 여정을"
+      title_highlight: "함께 합니다"
+      subtitle: "전문성과 신뢰를 바탕으로 고객의 비즈니스 가치를 극대화합니다"
+      cta_primary: "문의하기"
+      cta_secondary: "서비스 알아보기"
+    about:
+      title: "회사 소개"
+      subtitle: "L-BIZ Partners는 고객의 성공이 곧 우리의 성공이라는 신념으로"
+      description: "다양한 비즈니스 솔루션을 제공합니다. 10년 이상의 경험과 전문성을 바탕으로 최적의 서비스를 제공합니다."
+      stats:
+        clients: "고객사"
+        experience: "경력"
+        projects: "프로젝트"
+        satisfaction: "만족도"
+    services:
+      title: "서비스"
+      subtitle: "고객의 비즈니스 성장을 위한 맞춤형 솔루션을 제공합니다"
+      consulting:
+        title: "경영 컨설팅"
+        description: "기업의 경영 전략 수립부터 실행까지 전문적인 컨설팅 서비스를 제공합니다."
+      marketing:
+        title: "마케팅 전략"
+        description: "데이터 기반의 효과적인 마케팅 전략으로 브랜드 가치를 높입니다."
+      it:
+        title: "IT 솔루션"
+        description: "디지털 트랜스포메이션을 위한 맞춤형 IT 솔루션을 제공합니다."
+      hr:
+        title: "인사관리"
+        description: "효율적인 인재 관리와 조직 문화 개선을 지원합니다."
+    portfolio:
+      title: "포트폴리오"
+      subtitle: "성공적으로 완료한 프로젝트들을 소개합니다"
+      view_all: "전체 보기"
+    contact:
+      title: "문의하기"
+      subtitle: "프로젝트에 대해 상담해 보세요"
+      cta: "지금 문의하기"
+
+  # Portfolio
+  portfolio:
+    title: "포트폴리오"
+    subtitle: "성공적으로 완료한 프로젝트들을 소개합니다"
+    client: "고객사"
+    completed_at: "완료일"
+    no_items: "등록된 포트폴리오가 없습니다."
+    search:
+      placeholder: "포트폴리오 검색..."
+      button: "검색"
+      no_results: "검색 결과가 없습니다."
+
+  # Blog
+  blog:
+    title: "블로그"
+    subtitle: "비즈니스 인사이트와 트렌드를 공유합니다"
+    featured: "Featured"
+    read_more: "더 읽기"
+    by_author: "by %{author}"
+    published_at: "게시일"
+    category: "카테고리"
+    no_posts: "등록된 게시물이 없습니다."
+    search:
+      placeholder: "블로그 검색..."
+      button: "검색"
+      no_results: "검색 결과가 없습니다."
+    back_to_list: "목록으로"
+
+  # Contents
+  contents:
+    title: "정보콘텐츠"
+    subtitle: "비즈니스에 도움이 되는 정보를 제공합니다"
+    no_items: "등록된 콘텐츠가 없습니다."
+
+  # Contact form
+  contact:
+    title: "문의하기"
+    subtitle: "프로젝트나 서비스에 대해 문의해 주세요"
+    form:
+      name: "이름"
+      name_placeholder: "홍길동"
+      email: "이메일"
+      email_placeholder: "example@email.com"
+      phone: "전화번호"
+      phone_placeholder: "010-1234-5678"
+      subject: "제목"
+      subject_placeholder: "문의 제목을 입력해주세요"
+      message: "문의 내용"
+      message_placeholder: "문의하실 내용을 자세히 적어주세요"
+      submit: "문의 보내기"
+      submitting: "전송 중..."
+    success:
+      title: "문의가 접수되었습니다"
+      message: "빠른 시일 내에 답변 드리겠습니다. 감사합니다."
+      back_home: "홈으로 돌아가기"
+
+  # Common
+  common:
+    learn_more: "자세히 보기"
+    view_details: "상세 보기"
+    back: "뒤로"
+    loading: "로딩 중..."
+    search: "검색"
+    year: "년"
+    years: "년"
+
+  # Flash messages
+  flash:
+    contact:
+      created: "문의가 성공적으로 접수되었습니다."
+      error: "문의 접수에 실패했습니다. 다시 시도해 주세요."
+
+  # Pagination
+  pagy:
+    item_name:
+      one: "항목"
+      other: "항목"
+    nav:
+      prev: "&lsaquo; 이전"
+      next: "다음 &rsaquo;"
+      gap: "&hellip;"

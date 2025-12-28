@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="<%= I18n.locale %>" class="scroll-smooth">
+  <head>
+    <%= display_meta_tags(default_meta_tags) %>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <link rel="apple-touch-icon" href="/icon.png">
+
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+
+    <%# JSON-LD Structured Data %>
+    <%= json_ld_tag(organization_json_ld) %>
+    <%= json_ld_tag(website_json_ld) %>
+    <%= yield :json_ld %>
+  </head>
+
+  <body class="min-h-screen flex flex-col bg-gray-50 text-gray-900">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+      <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <!-- Logo -->
+          <div class="flex-shrink-0">
+            <%= link_to root_path, class: "flex items-center" do %>
+              <span class="text-xl font-bold text-blue-600">L-BIZ</span>
+              <span class="text-xl font-light text-gray-700 ml-1">Partners</span>
+            <% end %>
+          </div>
+
+          <!-- Desktop Navigation -->
+          <div class="hidden md:flex items-center space-x-8">
+            <%= link_to t("nav.about"), root_path(anchor: "about"), class: "text-gray-600 hover:text-blue-600 transition-colors" %>
+            <%= link_to t("nav.services"), root_path(anchor: "services"), class: "text-gray-600 hover:text-blue-600 transition-colors" %>
+            <%= link_to t("nav.contents"), contents_path, class: "text-gray-600 hover:text-blue-600 transition-colors" %>
+            <%= link_to t("nav.blog"), blog_index_path, class: "text-gray-600 hover:text-blue-600 transition-colors" %>
+            <%= link_to t("nav.contact"), new_contact_path, class: "bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors" %>
+
+            <!-- Language Switcher -->
+            <div class="relative" data-controller="dropdown">
+              <button type="button" class="flex items-center text-gray-600 hover:text-blue-600 transition-colors" data-action="click->dropdown#toggle">
+                <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
+                </svg>
+                <%= t("languages.#{I18n.locale}") %>
+                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                </svg>
+              </button>
+              <div class="hidden absolute right-0 mt-2 w-32 bg-white rounded-md shadow-lg py-1 z-50" data-dropdown-target="menu">
+                <% I18n.available_locales.each do |locale| %>
+                  <%= link_to t("languages.#{locale}"),
+                        url_for(locale: locale),
+                        class: "block px-4 py-2 text-sm #{I18n.locale == locale ? 'text-blue-600 font-medium bg-blue-50' : 'text-gray-700 hover:bg-gray-100'}" %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile Menu Button -->
+          <div class="md:hidden flex items-center space-x-4">
+            <!-- Mobile Language Switcher -->
+            <div class="relative" data-controller="dropdown">
+              <button type="button" class="text-gray-600 hover:text-blue-600" data-action="click->dropdown#toggle">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
+                </svg>
+              </button>
+              <div class="hidden absolute right-0 mt-2 w-32 bg-white rounded-md shadow-lg py-1 z-50" data-dropdown-target="menu">
+                <% I18n.available_locales.each do |locale| %>
+                  <%= link_to t("languages.#{locale}"),
+                        url_for(locale: locale),
+                        class: "block px-4 py-2 text-sm #{I18n.locale == locale ? 'text-blue-600 font-medium bg-blue-50' : 'text-gray-700 hover:bg-gray-100'}" %>
+                <% end %>
+              </div>
+            </div>
+
+            <button type="button" class="text-gray-600 hover:text-blue-600" data-action="click->mobile-menu#toggle">
+              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <div class="md:hidden hidden" id="mobile-menu">
+          <div class="px-2 pt-2 pb-3 space-y-1">
+            <%= link_to t("nav.about"), root_path(anchor: "about"), class: "block px-3 py-2 text-gray-600 hover:text-blue-600" %>
+            <%= link_to t("nav.services"), root_path(anchor: "services"), class: "block px-3 py-2 text-gray-600 hover:text-blue-600" %>
+            <%= link_to t("nav.contents"), contents_path, class: "block px-3 py-2 text-gray-600 hover:text-blue-600" %>
+            <%= link_to t("nav.blog"), blog_index_path, class: "block px-3 py-2 text-gray-600 hover:text-blue-600" %>
+            <%= link_to t("nav.contact"), new_contact_path, class: "block px-3 py-2 text-white bg-blue-600 rounded-lg text-center mt-2" %>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Flash Messages -->
+    <% if flash[:notice] %>
+      <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 text-center">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+    <% if flash[:alert] %>
+      <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 text-center">
+        <%= flash[:alert] %>
+      </div>
+    <% end %>
+
+    <!-- Main Content -->
+    <main class="flex-grow">
+      <%= yield %>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Company Info -->
+          <div>
+            <div class="flex items-center mb-4">
+              <span class="text-xl font-bold text-blue-400">L-BIZ</span>
+              <span class="text-xl font-light text-gray-300 ml-1">Partners</span>
+            </div>
+            <p class="text-gray-400 text-sm"><%= t("site.tagline") %></p>
+          </div>
+
+          <!-- Quick Links -->
+          <div>
+            <h3 class="font-semibold mb-4"><%= t("footer.quick_links") %></h3>
+            <ul class="space-y-2 text-sm text-gray-400">
+              <li><%= link_to t("nav.about"), root_path(anchor: "about"), class: "hover:text-white transition-colors" %></li>
+              <li><%= link_to t("nav.services"), root_path(anchor: "services"), class: "hover:text-white transition-colors" %></li>
+              <li><%= link_to t("nav.contents"), contents_path, class: "hover:text-white transition-colors" %></li>
+              <li><%= link_to t("nav.blog"), blog_index_path, class: "hover:text-white transition-colors" %></li>
+              <li><%= link_to t("nav.contact"), new_contact_path, class: "hover:text-white transition-colors" %></li>
+            </ul>
+          </div>
+
+          <!-- Contact -->
+          <div>
+            <h3 class="font-semibold mb-4"><%= t("footer.contact_info") %></h3>
+            <ul class="space-y-2 text-sm text-gray-400">
+              <li><%= t("footer.email") %>: contact@lbizpartners.com</li>
+              <li><%= t("footer.phone") %>: 02-1234-5678</li>
+              <li><%= t("footer.address") %>: <%= t("footer.address_value") %></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="border-t border-gray-800 mt-8 pt-8 text-center text-sm text-gray-400">
+          <p><%= raw t("footer.copyright", year: Date.today.year) %></p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

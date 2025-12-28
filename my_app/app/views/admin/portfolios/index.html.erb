@@ -1,0 +1,81 @@
+<% content_for :page_title, "포트폴리오 관리" %>
+
+<!-- Page Header -->
+<div class="flex justify-between items-center mb-6">
+  <div>
+    <h2 class="text-2xl font-bold text-gray-900">포트폴리오 관리</h2>
+    <p class="text-gray-600 mt-1">총 <%= @pagy.count %>개의 포트폴리오</p>
+  </div>
+  <%= link_to new_admin_portfolio_path, class: "bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center" do %>
+    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+    </svg>
+    새 포트폴리오
+  <% end %>
+</div>
+
+<!-- Portfolio Table -->
+<div class="bg-white rounded-xl shadow-sm overflow-hidden">
+  <% if @portfolios.any? %>
+    <table class="w-full">
+      <thead class="bg-gray-50 border-b border-gray-200">
+        <tr>
+          <th class="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">ID</th>
+          <th class="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">이미지</th>
+          <th class="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">제목</th>
+          <th class="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">고객사</th>
+          <th class="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">상태</th>
+          <th class="px-6 py-4 text-right text-xs font-semibold text-gray-500 uppercase tracking-wider">액션</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-200">
+        <% @portfolios.each do |portfolio| %>
+          <tr class="hover:bg-gray-50 transition-colors">
+            <td class="px-6 py-4 text-sm text-gray-500"><%= portfolio.id %></td>
+            <td class="px-6 py-4">
+              <% if portfolio.thumbnail_url.present? || portfolio.image_url.present? %>
+                <img src="<%= portfolio.thumbnail_url || portfolio.image_url %>" alt="<%= portfolio.title %>" class="w-16 h-12 object-cover rounded">
+              <% else %>
+                <div class="w-16 h-12 bg-gray-100 rounded flex items-center justify-center">
+                  <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                </div>
+              <% end %>
+            </td>
+            <td class="px-6 py-4">
+              <span class="text-sm font-medium text-gray-900"><%= portfolio.title %></span>
+            </td>
+            <td class="px-6 py-4 text-sm text-gray-600"><%= portfolio.client %></td>
+            <td class="px-6 py-4">
+              <% if portfolio.published? %>
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                  공개
+                </span>
+              <% else %>
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                  비공개
+                </span>
+              <% end %>
+            </td>
+            <td class="px-6 py-4 text-right space-x-3">
+              <%= link_to "보기", admin_portfolio_path(portfolio.id), class: "text-blue-600 hover:text-blue-800 text-sm" %>
+              <%= link_to "수정", edit_admin_portfolio_path(portfolio.id), class: "text-gray-600 hover:text-gray-800 text-sm" %>
+              <%= link_to "삭제", admin_portfolio_path(portfolio.id), data: { turbo_method: :delete, turbo_confirm: "정말 삭제하시겠습니까?" }, class: "text-red-600 hover:text-red-800 text-sm" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <div class="text-center py-12">
+      <svg class="w-12 h-12 text-gray-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+      </svg>
+      <p class="text-gray-500 mb-4">등록된 포트폴리오가 없습니다.</p>
+      <%= link_to "첫 포트폴리오 등록하기", new_admin_portfolio_path, class: "text-blue-600 hover:text-blue-800" %>
+    </div>
+  <% end %>
+</div>
+
+<%= render "shared/pagination" %>

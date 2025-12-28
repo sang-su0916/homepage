@@ -1,0 +1,58 @@
+<% content_for :page_title, @portfolio.title %>
+
+<!-- Breadcrumb -->
+<div class="mb-6">
+  <nav class="text-sm text-gray-500">
+    <%= link_to "포트폴리오", admin_portfolios_path, class: "hover:text-blue-600" %>
+    <span class="mx-2">/</span>
+    <span class="text-gray-900"><%= @portfolio.title %></span>
+  </nav>
+</div>
+
+<!-- Header with Actions -->
+<div class="flex justify-between items-start mb-6">
+  <div>
+    <h2 class="text-2xl font-bold text-gray-900"><%= @portfolio.title %></h2>
+    <div class="flex items-center gap-3 mt-2">
+      <% if @portfolio.published? %>
+        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">공개</span>
+      <% else %>
+        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">비공개</span>
+      <% end %>
+      <span class="text-gray-500 text-sm">고객사: <%= @portfolio.client %></span>
+    </div>
+  </div>
+  <div class="flex gap-3">
+    <%= link_to edit_admin_portfolio_path(@portfolio.id), class: "bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors" do %>
+      <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+      </svg>
+      수정
+    <% end %>
+    <%= link_to admin_portfolios_path, class: "text-gray-600 hover:text-gray-800 px-4 py-2" do %>
+      목록으로
+    <% end %>
+  </div>
+</div>
+
+<!-- Content -->
+<div class="bg-white rounded-xl shadow-sm overflow-hidden">
+  <!-- Image -->
+  <% if @portfolio.large_url.present? || @portfolio.image_url.present? %>
+    <div class="h-64 bg-gray-100">
+      <img src="<%= @portfolio.large_url || @portfolio.image_url %>" alt="<%= @portfolio.title %>" class="w-full h-full object-cover">
+    </div>
+  <% else %>
+    <div class="h-64 bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
+      <span class="text-white text-8xl font-bold opacity-30"><%= @portfolio.title[0] %></span>
+    </div>
+  <% end %>
+
+  <!-- Description -->
+  <div class="p-6">
+    <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">설명</h3>
+    <div class="prose max-w-none text-gray-700">
+      <%= simple_format(@portfolio.description) %>
+    </div>
+  </div>
+</div>

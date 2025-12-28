@@ -1,0 +1,112 @@
+<% content_for :page_title, "문의 상세" %>
+
+<!-- Breadcrumb -->
+<div class="mb-6">
+  <nav class="text-sm text-gray-500">
+    <%= link_to "문의 관리", admin_contacts_path, class: "hover:text-blue-600" %>
+    <span class="mx-2">/</span>
+    <span class="text-gray-900"><%= @contact.name %></span>
+  </nav>
+</div>
+
+<!-- Header -->
+<div class="flex justify-between items-start mb-6">
+  <div>
+    <h2 class="text-2xl font-bold text-gray-900"><%= @contact.name %></h2>
+    <div class="flex items-center gap-3 mt-2">
+      <% case @contact.status
+         when "pending" %>
+        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">대기중</span>
+      <% when "read" %>
+        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">읽음</span>
+      <% when "replied" %>
+        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">답변완료</span>
+      <% end %>
+    </div>
+  </div>
+  <%= link_to admin_contacts_path, class: "text-gray-600 hover:text-gray-800 px-4 py-2" do %>
+    ← 목록으로
+  <% end %>
+</div>
+
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+  <!-- Contact Info -->
+  <div class="lg:col-span-2 space-y-6">
+    <!-- Message -->
+    <div class="bg-white rounded-xl shadow-sm p-6">
+      <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">문의 내용</h3>
+      <div class="prose max-w-none text-gray-700">
+        <%= simple_format(@contact.message) %>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sidebar -->
+  <div class="space-y-6">
+    <!-- Contact Details -->
+    <div class="bg-white rounded-xl shadow-sm p-6">
+      <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">연락처 정보</h3>
+      <dl class="space-y-4">
+        <div>
+          <dt class="text-xs text-gray-500">이메일</dt>
+          <dd class="text-sm text-gray-900">
+            <a href="mailto:<%= @contact.email %>" class="text-blue-600 hover:text-blue-800"><%= @contact.email %></a>
+          </dd>
+        </div>
+        <% if @contact.phone.present? %>
+          <div>
+            <dt class="text-xs text-gray-500">전화번호</dt>
+            <dd class="text-sm text-gray-900">
+              <a href="tel:<%= @contact.phone %>" class="text-blue-600 hover:text-blue-800"><%= @contact.phone %></a>
+            </dd>
+          </div>
+        <% end %>
+      </dl>
+    </div>
+
+    <!-- Status Update -->
+    <div class="bg-white rounded-xl shadow-sm p-6">
+      <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">상태 변경</h3>
+      <%= form_with url: admin_contact_path(@contact.id), method: :patch, local: true do %>
+        <div class="space-y-4">
+          <select
+            name="contact[status]"
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          >
+            <option value="pending" <%= @contact.status == "pending" ? "selected" : "" %>>대기중</option>
+            <option value="read" <%= @contact.status == "read" ? "selected" : "" %>>읽음</option>
+            <option value="replied" <%= @contact.status == "replied" ? "selected" : "" %>>답변완료</option>
+          </select>
+          <button
+            type="submit"
+            class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg font-medium hover:bg-blue-700 transition-colors"
+          >
+            상태 변경
+          </button>
+        </div>
+      <% end %>
+    </div>
+
+    <!-- Actions -->
+    <div class="bg-white rounded-xl shadow-sm p-6">
+      <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">작업</h3>
+      <div class="space-y-3">
+        <a
+          href="mailto:<%= @contact.email %>"
+          class="w-full flex items-center justify-center bg-green-600 text-white py-2 px-4 rounded-lg font-medium hover:bg-green-700 transition-colors"
+        >
+          <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+          이메일 보내기
+        </a>
+        <%= link_to admin_contact_path(@contact.id), data: { turbo_method: :delete, turbo_confirm: "정말 삭제하시겠습니까?" }, class: "w-full flex items-center justify-center bg-red-100 text-red-700 py-2 px-4 rounded-lg font-medium hover:bg-red-200 transition-colors" do %>
+          <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+          </svg>
+          삭제
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

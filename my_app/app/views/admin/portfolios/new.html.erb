@@ -1,0 +1,19 @@
+<% content_for :page_title, "새 포트폴리오" %>
+
+<!-- Breadcrumb -->
+<div class="mb-6">
+  <nav class="text-sm text-gray-500">
+    <%= link_to "포트폴리오", admin_portfolios_path, class: "hover:text-blue-600" %>
+    <span class="mx-2">/</span>
+    <span class="text-gray-900">새 포트폴리오</span>
+  </nav>
+</div>
+
+<!-- Header -->
+<div class="mb-6">
+  <h2 class="text-2xl font-bold text-gray-900">새 포트폴리오</h2>
+  <p class="text-gray-600 mt-1">새로운 포트폴리오를 등록합니다</p>
+</div>
+
+<!-- Form -->
+<%= render "form" %>

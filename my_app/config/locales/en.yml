@@ -1,0 +1,163 @@
+en:
+  # ActiveModel validations
+  activemodel:
+    errors:
+      messages:
+        blank: "can't be blank"
+        invalid: "is invalid"
+        not_a_number: "is not a number"
+        greater_than_or_equal_to: "must be greater than or equal to %{count}"
+  errors:
+    format: "%{attribute} %{message}"
+
+  # Language names
+  languages:
+    ko: "한국어"
+    en: "English"
+
+  # Site-wide
+  site:
+    name: "L-BIZ Partners"
+    tagline: "Your Optimal Partner for Business Success"
+
+  # Navigation
+  nav:
+    about: "About"
+    services: "Services"
+    contents: "Resources"
+    blog: "Blog"
+    contact: "Contact"
+    portfolio: "Portfolio"
+
+  # Footer
+  footer:
+    quick_links: "Quick Links"
+    contact_info: "Contact"
+    email: "Email"
+    phone: "Phone"
+    address: "Address"
+    address_value: "Gangnam-gu, Seoul"
+    copyright: "&copy; %{year} L-BIZ Partners. All rights reserved."
+
+  # Home page
+  home:
+    hero:
+      title: "We Partner in Your"
+      title_highlight: "Business Success"
+      subtitle: "Maximizing your business value with expertise and trust"
+      cta_primary: "Contact Us"
+      cta_secondary: "Learn More"
+    about:
+      title: "About Us"
+      subtitle: "At L-BIZ Partners, we believe your success is our success"
+      description: "We provide various business solutions. With over 10 years of experience and expertise, we deliver optimal services."
+      stats:
+        clients: "Clients"
+        experience: "Experience"
+        projects: "Projects"
+        satisfaction: "Satisfaction"
+    services:
+      title: "Services"
+      subtitle: "Customized solutions for your business growth"
+      consulting:
+        title: "Business Consulting"
+        description: "Professional consulting services from strategy development to execution."
+      marketing:
+        title: "Marketing Strategy"
+        description: "Data-driven marketing strategies to enhance your brand value."
+      it:
+        title: "IT Solutions"
+        description: "Customized IT solutions for digital transformation."
+      hr:
+        title: "HR Management"
+        description: "Supporting efficient talent management and organizational culture improvement."
+    portfolio:
+      title: "Portfolio"
+      subtitle: "Introducing our successfully completed projects"
+      view_all: "View All"
+    contact:
+      title: "Contact Us"
+      subtitle: "Let's discuss your project"
+      cta: "Get in Touch"
+
+  # Portfolio
+  portfolio:
+    title: "Portfolio"
+    subtitle: "Introducing our successfully completed projects"
+    client: "Client"
+    completed_at: "Completed"
+    no_items: "No portfolio items available."
+    search:
+      placeholder: "Search portfolio..."
+      button: "Search"
+      no_results: "No results found."
+
+  # Blog
+  blog:
+    title: "Blog"
+    subtitle: "Sharing business insights and trends"
+    featured: "Featured"
+    read_more: "Read More"
+    by_author: "by %{author}"
+    published_at: "Published"
+    category: "Category"
+    no_posts: "No blog posts available."
+    search:
+      placeholder: "Search blog..."
+      button: "Search"
+      no_results: "No results found."
+    back_to_list: "Back to List"
+
+  # Contents
+  contents:
+    title: "Resources"
+    subtitle: "Useful information for your business"
+    no_items: "No content available."
+
+  # Contact form
+  contact:
+    title: "Contact Us"
+    subtitle: "Have a question about our services?"
+    form:
+      name: "Name"
+      name_placeholder: "John Doe"
+      email: "Email"
+      email_placeholder: "example@email.com"
+      phone: "Phone"
+      phone_placeholder: "+82-10-1234-5678"
+      subject: "Subject"
+      subject_placeholder: "Enter subject"
+      message: "Message"
+      message_placeholder: "Please describe your inquiry in detail"
+      submit: "Send Message"
+      submitting: "Sending..."
+    success:
+      title: "Thank you for your inquiry"
+      message: "We will get back to you as soon as possible."
+      back_home: "Back to Home"
+
+  # Common
+  common:
+    learn_more: "Learn More"
+    view_details: "View Details"
+    back: "Back"
+    loading: "Loading..."
+    search: "Search"
+    year: "year"
+    years: "years"
+
+  # Flash messages
+  flash:
+    contact:
+      created: "Your inquiry has been successfully submitted."
+      error: "Failed to submit inquiry. Please try again."
+
+  # Pagination
+  pagy:
+    item_name:
+      one: "item"
+      other: "items"
+    nav:
+      prev: "&lsaquo; Prev"
+      next: "Next &rsaquo;"
+      gap: "&hellip;"

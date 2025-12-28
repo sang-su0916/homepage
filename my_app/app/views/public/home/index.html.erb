@@ -1,0 +1,166 @@
+<%
+  set_page_meta(
+    title: t("site.tagline"),
+    description: I18n.locale == :ko ?
+      "L-BIZ Partners는 전문 컨설팅, IT 솔루션, 마케팅 서비스를 제공합니다. 기업의 성장과 디지털 전환을 지원하는 최고의 파트너입니다." :
+      "L-BIZ Partners provides professional consulting, IT solutions, and marketing services. Your best partner for business growth and digital transformation.",
+    keywords: I18n.locale == :ko ?
+      "경영 컨설팅, IT 솔루션, 마케팅 전략, 비즈니스 컨설팅, 기업 성장, 디지털 전환" :
+      "business consulting, IT solutions, marketing strategy, digital transformation, enterprise growth"
+  )
+%>
+
+<!-- Hero Section -->
+<section class="bg-gradient-to-br from-blue-600 to-blue-800 text-white py-24 lg:py-32">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+      <%= t("home.hero.title") %>
+      <span class="block text-blue-200"><%= t("home.hero.title_highlight") %></span>
+    </h1>
+    <p class="text-xl md:text-2xl text-blue-100 mb-8"><%= t("home.hero.subtitle") %></p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <%= link_to t("home.hero.cta_primary"), new_contact_path, class: "bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors" %>
+      <%= link_to t("home.hero.cta_secondary"), root_path(anchor: "services"), class: "border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors" %>
+    </div>
+  </div>
+</section>
+
+<!-- Company Intro -->
+<section id="about" class="py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4"><%= t("home.about.title") %></h2>
+      <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+    </div>
+    <div class="max-w-3xl mx-auto text-center">
+      <p class="text-lg text-gray-600 leading-relaxed mb-4">
+        <%= t("home.about.subtitle") %>
+      </p>
+      <p class="text-lg text-gray-600 leading-relaxed">
+        <%= t("home.about.description") %>
+      </p>
+    </div>
+
+    <!-- Stats -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mt-12">
+      <div class="text-center">
+        <div class="text-4xl font-bold text-blue-600 mb-2">100+</div>
+        <div class="text-gray-600"><%= t("home.about.stats.clients") %></div>
+      </div>
+      <div class="text-center">
+        <div class="text-4xl font-bold text-blue-600 mb-2">10+</div>
+        <div class="text-gray-600"><%= t("home.about.stats.experience") %></div>
+      </div>
+      <div class="text-center">
+        <div class="text-4xl font-bold text-blue-600 mb-2">500+</div>
+        <div class="text-gray-600"><%= t("home.about.stats.projects") %></div>
+      </div>
+      <div class="text-center">
+        <div class="text-4xl font-bold text-blue-600 mb-2">98%</div>
+        <div class="text-gray-600"><%= t("home.about.stats.satisfaction") %></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Services -->
+<section id="services" class="py-20 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4"><%= t("home.services.title") %></h2>
+      <div class="w-20 h-1 bg-blue-600 mx-auto mb-4"></div>
+      <p class="text-gray-600"><%= t("home.services.subtitle") %></p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <!-- Service 1: Consulting -->
+      <div class="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow">
+        <div class="w-14 h-14 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
+          <svg class="w-7 h-7 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+          </svg>
+        </div>
+        <h3 class="text-xl font-semibold text-gray-900 mb-3"><%= t("home.services.consulting.title") %></h3>
+        <p class="text-gray-600"><%= t("home.services.consulting.description") %></p>
+      </div>
+
+      <!-- Service 2: Marketing -->
+      <div class="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow">
+        <div class="w-14 h-14 bg-green-100 rounded-lg flex items-center justify-center mb-6">
+          <svg class="w-7 h-7 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" />
+          </svg>
+        </div>
+        <h3 class="text-xl font-semibold text-gray-900 mb-3"><%= t("home.services.marketing.title") %></h3>
+        <p class="text-gray-600"><%= t("home.services.marketing.description") %></p>
+      </div>
+
+      <!-- Service 3: IT Solutions -->
+      <div class="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow">
+        <div class="w-14 h-14 bg-purple-100 rounded-lg flex items-center justify-center mb-6">
+          <svg class="w-7 h-7 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+          </svg>
+        </div>
+        <h3 class="text-xl font-semibold text-gray-900 mb-3"><%= t("home.services.it.title") %></h3>
+        <p class="text-gray-600"><%= t("home.services.it.description") %></p>
+      </div>
+
+      <!-- Service 4: HR Management -->
+      <div class="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow">
+        <div class="w-14 h-14 bg-orange-100 rounded-lg flex items-center justify-center mb-6">
+          <svg class="w-7 h-7 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+          </svg>
+        </div>
+        <h3 class="text-xl font-semibold text-gray-900 mb-3"><%= t("home.services.hr.title") %></h3>
+        <p class="text-gray-600"><%= t("home.services.hr.description") %></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Portfolio Preview -->
+<% if @portfolios.any? %>
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4"><%= t("home.portfolio.title") %></h2>
+        <div class="w-20 h-1 bg-blue-600 mx-auto mb-4"></div>
+        <p class="text-gray-600"><%= t("home.portfolio.subtitle") %></p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8 mb-10">
+        <% @portfolios.each do |portfolio| %>
+          <%= link_to portfolio_path(portfolio.id), class: "group" do %>
+            <div class="bg-gray-50 rounded-xl overflow-hidden hover:shadow-lg transition-all">
+              <div class="h-48 bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
+                <span class="text-white text-4xl font-bold opacity-50"><%= portfolio.title[0] %></span>
+              </div>
+              <div class="p-6">
+                <h3 class="text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition-colors mb-2">
+                  <%= portfolio.title %>
+                </h3>
+                <p class="text-sm text-gray-500"><%= portfolio.client %></p>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+
+      <div class="text-center">
+        <%= link_to "#{t('home.portfolio.view_all')} →", portfolios_path, class: "text-blue-600 font-semibold hover:text-blue-800 transition-colors" %>
+      </div>
+    </div>
+  </section>
+<% end %>
+
+<!-- Contact CTA -->
+<section class="py-20 bg-blue-600">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4"><%= t("home.contact.title") %></h2>
+    <p class="text-xl text-blue-100 mb-8"><%= t("home.contact.subtitle") %></p>
+    <%= link_to t("home.contact.cta"), new_contact_path, class: "inline-block bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors" %>
+  </div>
+</section>

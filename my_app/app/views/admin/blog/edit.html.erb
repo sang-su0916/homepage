@@ -1,0 +1,15 @@
+<% content_for :page_title, "블로그 글 수정" %>
+
+<!-- Page Header -->
+<div class="mb-6">
+  <nav class="flex items-center text-sm text-gray-500 mb-2">
+    <%= link_to "블로그 관리", admin_blog_index_path, class: "hover:text-indigo-600" %>
+    <span class="mx-2">/</span>
+    <span class="text-gray-900">수정</span>
+  </nav>
+  <h2 class="text-2xl font-bold text-gray-900">블로그 글 수정</h2>
+</div>
+
+<%= form_with model: @post, url: admin_blog_path(@post.id), method: :patch, scope: :blog_post, local: true, html: { multipart: true } do |form| %>
+  <%= render "form", form: form %>
+<% end %>
